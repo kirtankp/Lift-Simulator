@@ -53,7 +53,7 @@ body{
     margin-bottom: 20px;
   }
   
-  .submitButton {
+  Button {
     background-color: #05ba65bc;
     color: rgb(0, 0, 0);
     padding: 10px 20px;
@@ -63,7 +63,7 @@ body{
     cursor: pointer;
   }
   
-  .submitButton:hover {
+  Button:hover {
     background-color: #1e620a;
   }
 
