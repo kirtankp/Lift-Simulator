@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lift Simulator</title>
+    <title>Lift Simulation</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <script src="script.js"></script>
     <div class="container">
         <h1 class="heading">Lift Simulator</h1>
         <form onsubmit="Simulation()">
@@ -24,9 +23,10 @@
                 <input type="number" id="lifts" name="lifts" placeholder="range: 1-15" min="1" max="15" required />
             </div>
 
-            <input type="submit" value="Submit" />
+            <button class="submitButton" type="submit">Submit</button>
+            <!-- <input type="submit" value="Submit" /> -->
         </form>
     </div>
 </body>
-
-</html>
+<script src="script.js"></script>
+</html> 

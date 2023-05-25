@@ -1,143 +1,75 @@
-
-//stores lifts Availabilitiy
-const availableLifts = new Map();
-//stores lift position
-const liftAt = new Map();
-//store floor lift mapping
-const floorLiftMap = new Map();
-//store pending lift calls
-const pendingCalls = [];
-
-
-//this function starts when initial input form submitted
+//this function is called when the form is submitted, when the submit button is pressed.
 const Simulation = () => {
-    mainUI()
+
+    //here we are storing the input value from the form.  
+    const numFloors = parseInt(document.getElementById('floors').value);
+    const numLifts = parseInt(document.getElementById('lifts').value);
+
+    //this will make the blank body while removing the previous form content
+    document.body.innerHTML = "";
+
+    //func. to generate the floors and lifts.
+    generateFloors(numFloors);
+    generateLifts(numLifts);
+
 }
 
+const generateFloors = (numFloors) => {
 
-//this is an mainUI or we can say simulationUI
-const mainUI = () => {
-    //storing the user input.
-    const noOfFloor = document.querySelector("#floors").value
-    const noOfLifts = document.querySelector("#lifts").value
-    
-    //clearing inputUI
-    const container = document.querySelector(".container")
-    container.innerHTML = ""
+    const floorsContainer = document.createElement('div');
+    floorsContainer.id = 'floorsContainer';
 
-    //function to generate the floors and lift
-    generateFloor(noOfFloor)
-    generateLift(noOfLifts)
-}
+    //last floor
+    const lastFloor = document.createElement('div');
+    lastFloor.className = 'floor';
+    lastFloor.id = `Floor ${numFloors}`;
+    lastFloor.innerHTML = 
+    `
+    <button class="lift-control down">DOWN</button>
+        Floor ${numFloors}
+    `;
+    floorsContainer.appendChild(lastFloor);
 
-//generation floor based on the input
-const generateFloor = (totalFloor) => {
-    //we going to append all floors(in form of child) to floorsContainer(.container) 
-    const floorsContainer = document.querySelector(".container");
-    for (let i = totalFloor; i > 0; i--) {
-        const floor = document.createElement("div");
-        floor.className = "floorClass"
-        const floorId = `floor-${i}`
-        floor.id = floorId
-        floor.innerHTML = 
+    //middle floors
+    for (let i = numFloors - 1; i >= 1; i--) {
+        const floor = document.createElement('div');
+        floor.className = 'floor';
+        floor.id = `Floor ${i}`;
+        floor.innerHTML =  
         `
-            <div class="floor-details">
             <button class="lift-control up">UP</button>
-            <p class="floor-number">Floor-${i}</p> 
             <button class="lift-control down">DOWN</button>
-            </div>
-            <style>
-                .floor-details{
-                    display: flex;
-                    flex-direction: column;
-                    justifyContent: space-between;
-                    alignItems: center;
-                    height: 150px;
-                    
-                    
-                }
-            </style>
-        ` 
-        //eventListener for the up and down button
-        floor.querySelector(".up").addEventListener("click", (event) => controlLiftCall(event));
-        floor.querySelector(".down").addEventListener("click", (event) => controlLiftCall(event));
-        //append floors(child)
-        floorsContainer.appendChild(floor)
-        floorLiftMap.set(floorId, null);
+            Floor ${i}
+        `;
+        floorsContainer.appendChild(floor);
     }
-    //one groundFloor is added initial all lift will stand there and has only up button 
-    //and this floor will append to floorsContainer(container) 
-    const groundFloor = document.createElement("div");
-        groundFloor.className = "floorClass"
-        groundFloor.id = "floor-0"       
-        groundFloor.innerHTML = 
-        `
-            <div class="floor-details">
-            <button class="lift-control up">UP</button>
-            <p class="floor-number">Floor-0</p> 
-            </div>
-            <style>
-                .floor-details{
-                    display: flex;
-                    flex-direction: column;
-                    justifyContent: space-between;
-                    alignItems: center;
-                    height: 150px;
-                    
-                    
-                }
-            </style>
-        ` 
-        groundFloor.querySelector(".up").addEventListener("click", (event) => controlLiftCall(event));
-        //append groundFloors(child)
-        floorsContainer.appendChild(groundFloor)
-        floorLiftMap.set("floor-0", null);
+
+    //ground floor
+    const groundFloor = document.createElement('div');
+    groundFloor.className = 'floor';
+    groundFloor.id = 'Floor 0';
+    groundFloor.innerHTML =  
+    `
+        <button class="lift-control up">UP</button>
+        Floor 0
+    `;
+    floorsContainer.appendChild(groundFloor);
+
+    document.body.appendChild(floorsContainer);
 }
 
+const generateLifts = (numLifts) => {
 
-//generate the lifts based on the input
-const generateLift = (totalLift) => {
-    //initial of simulation we going to add all lifts at groundFloor so (append all lifts in floor-0(container)) 
-    const groundFloor = document.querySelector(".container > #floor-0");
-    for(let i = 1; i <= totalLift; i++){
-        const currentLift = document.createElement("div");
-        currentLift.className = "lift";
-        currentLift.id = `lift-${i}`;
-        
-        currentLift.innerHTML = 
-        `
-            <div class="door left-door"></div>
-            <div class="door right-door"></div>
-            <style>
-            .lift{
-                height: 100px;
-                width: 90px;
-                background-color: #3dec7a;
-                /* border: 1px solid white; */
-                display: flex;
-                flex-direction: row;
-                overflow: hidden;
-            }
-            
-            .door{
-                background-color: #A1b9e6;
-                height: 100%;
-                width: 50%;
-                transition: all 2.5s;
-            }
-            
-            .left-door{
-                border-right: 1px solid #ec63b1;
-            }
-            
-            .right-door{
-                border-left: 1px solid #ec63b1;
-            }
-            </style>
-        `;
-        availableLifts.set(`lift-${i}`, true);
-        liftAt.set(`lift-${i}`, 0);
-        groundFloor.appendChild(currentLift);
+    const liftsContainer = document.createElement('div');
+    liftsContainer.id = 'liftsContainer';
+
+    for (let i = 0; i < numLifts; i++) {
+        const lift = document.createElement('div');
+        lift.className = 'lift';
+        lift.innerHTML = `Lift ${i + 1}`;
+        liftsContainer.appendChild(lift);
     }
-    
+    //this lift container will append at ground floor
+    const groundFloor = document.getElementById('Floor 0');
+    groundFloor.appendChild(liftsContainer);
 }
