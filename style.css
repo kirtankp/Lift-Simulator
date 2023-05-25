@@ -53,7 +53,7 @@ body{
     margin-bottom: 20px;
   }
   
-  .submitButton {
+  Button {
     background-color: #05ba65bc;
     color: rgb(0, 0, 0);
     padding: 10px 20px;
@@ -63,7 +63,7 @@ body{
     cursor: pointer;
   }
   
-  .submitButton:hover {
+  Button:hover {
     background-color: #1e620a;
   }
 
@@ -90,16 +90,3 @@ body{
     gap: 10px;
 }
 
-.lift-control {
-  background-color: #05ba65bc;
-  color: rgb(0, 0, 0);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.lift-control:hover {
-  background-color: #1e620a;
-}
