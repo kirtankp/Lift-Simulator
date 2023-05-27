@@ -1,91 +1,142 @@
-body{
-    background-color: #c8f2e6;
-  }
-  
-  .container {
-    
-    margin: 0 auto;
-    background-color: #aef1dd;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .heading {
-    color: rgba(255, 1, 1, 0.676);
-    text-align: center;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  
-  /*form style*/
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .form-element {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 10px;
-  }
-  
-  label {
-    font-size: 20px;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  
-  input {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
-  }
-  
-  Button {
-    background-color: #05ba65bc;
-    color: rgb(0, 0, 0);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  Button:hover {
-    background-color: #1e620a;
-  }
+body {
+  background-color: #c8f2e6;
+}
 
-  
-/*stimulation style*/
+.container {
+
+  margin: 0 auto;
+  background-color: #aef1dd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heading {
+  color: rgba(255, 1, 1, 0.676);
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/*form style*/
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 10px;
+}
+
+label {
+  font-size: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.submitButton {
+  background-color: #05ba65bc;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #1e620a;
+}
+
+
+/*generated floors and lifts */
 
 #floorsContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .floor {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 20px;
-  }
-  
-#liftsContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  border-bottom: 2px solid #000000;
+  height: 100px;
+  min-width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+}
+
+.liftButtons {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.lift-control {
+  background-color: #05ba65bc;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  cursor: pointer;
+}
+
+.lift-control:hover {
+  background-color: #1e620a;
+}
+
+.lift {
+  height: 100px;
+  width: 70px;
+  background-color: black;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.leftDoor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 50%;
+  background-color: #ff9d00;
+  border: 2px solid #000000;
+  z-index: 1;
+}
+
+.rightDoor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 50%;
+  background-color: #ff9d00;
+  border: 2px solid #000000;
+  z-index: 1;
 }
