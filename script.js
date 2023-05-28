@@ -12,7 +12,20 @@ const Simulation = () => {
     generateFloors(numFloors);
     generateLifts(numLifts);
 
-}
+    const openDoorsButton = document.getElementById('open-doors-button');
+    openDoorsButton.addEventListener('click', () => {
+        const leftDoor = document.querySelector('.left-Door');
+        const rightDoor = document.querySelector('.right-Door');
+
+        leftDoor.classList.remove('close');
+        rightDoor.classList.remove('close');
+
+        setTimeout(() => {
+            leftDoor.classList.add('close');
+            rightDoor.classList.add('close');
+        }, 5000);
+    });
+};
 
 //this func will generates the floor
 const generateFloors = (numFloors) => {
@@ -57,7 +70,7 @@ const generateFloors = (numFloors) => {
     groundFloor.innerHTML =
         `
         <div class="liftButtons">
-            <button class="lift-control up">UP</button>
+            <button id='open-doors-button' class="lift-control up">UP</button>
             Floor 0
         </div>
     `;
@@ -67,6 +80,7 @@ const generateFloors = (numFloors) => {
     document.body.appendChild(floorsContainer);
 }
 
+//this func will generates the lifts on ground floor initially
 const generateLifts = (numLifts) => {
 
     //this helps to locate ground floor
@@ -78,10 +92,10 @@ const generateLifts = (numLifts) => {
         lifts.className = 'lift';
         //leftDoor
         const leftDoor = document.createElement('div');
-        leftDoor.className = 'leftDoor';
+        leftDoor.className = 'left-Door close';
         //rightDoor
         const rightDoor = document.createElement('div');
-        rightDoor.className = 'rightDoor';
+        rightDoor.className = 'right-Door close';
         //leftDoor and rightDoor will append to the lift
         lifts.appendChild(leftDoor);
         lifts.appendChild(rightDoor);
@@ -92,3 +106,5 @@ const generateLifts = (numLifts) => {
     }
 
 }
+
+
