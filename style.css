@@ -113,13 +113,13 @@ input {
 .lift {
   height: 100px;
   width: 70px;
-  background-color: black;
+  background-color: gray;
   position: relative;
   z-index: 3;
   overflow: hidden;
 }
 
-.leftDoor {
+.left-Door {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -128,9 +128,12 @@ input {
   background-color: #ff9d00;
   border: 2px solid #000000;
   z-index: 1;
+
+  transition: transform 2.5s;
+  transform: translateX(-100%);
 }
 
-.rightDoor {
+.right-Door {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -139,4 +142,11 @@ input {
   background-color: #ff9d00;
   border: 2px solid #000000;
   z-index: 1;
+
+  transition: transform 2.5s;
+  transform: translateX(100%);
+}
+
+.close {
+  transform: translateX(0);
 }
